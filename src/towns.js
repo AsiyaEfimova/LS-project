@@ -29,6 +29,7 @@
    homeworkContainer.appendChild(newDiv);
  */
 const homeworkContainer = document.querySelector('#homework-container');
+var townsArray = [];
 
 /*
  Функция должна вернуть Promise, который должен быть разрешен с массивом городов в качестве значения
@@ -36,10 +37,9 @@ const homeworkContainer = document.querySelector('#homework-container');
  Массив городов пожно получить отправив асинхронный запрос по адресу
  https://raw.githubusercontent.com/smelukov/citiesTest/master/cities.json
  */
-function loadTowns(chunk) {
+function loadTowns(url) {
     return new Promise((resolve, reject) => {
-        const url = 'https://raw.githubusercontent.com/smelukov/citiesTest/master/cities.json',
-            request = new XMLHttpRequest();
+        const request = new XMLHttpRequest();
 
         request.open('GET', url);
         request.responseType = 'json';
@@ -48,7 +48,7 @@ function loadTowns(chunk) {
             if (request.status >= 400) {
                 reject();
             } else {
-                let townsList = request.response.filter((x) => isMatching(x.name, chunk));
+                let townsList = request.response;
 
                 let towns = townsList.sort((a, b) => {
                     const nameA = a.name.toUpperCase();
@@ -92,7 +92,7 @@ function isMatching(full, chunk) {
         return full.indexOf(chunk) >= 0;
     }
 
-    return true;
+    return false;
 }
 
 /* Блок с надписью "Загрузка" */
@@ -103,17 +103,25 @@ const filterBlock = homeworkContainer.querySelector('#filter-block');
 const filterInput = homeworkContainer.querySelector('#filter-input');
 /* Блок с результатами поиска */
 const filterResult = homeworkContainer.querySelector('#filter-result');
+/* Блок с ошибкой */
+const errorBlock = homeworkContainer.querySelector('#error-block');
+/* Кнопка повтора */
+const loadBtn = homeworkContainer.querySelector('#load-towns');
 
 filterInput.addEventListener('keyup', function() {
-    let inpValue = this.value;
+    let inpValue = this.value,
+        filteredTowns = townsArray.filter(town => {
+            return isMatching(town.name, inpValue);
+        });
 
-    loadTowns(inpValue).then(towns => AddTowns(towns))
-        .catch( () => console.error('error'));
+    AddTowns(filteredTowns);
+});
+loadBtn.addEventListener('click', function(e) {
+    e.preventDefault();
+    GetTowns('https://raw.githubusercontent.com/smelukov/citiesTest/master/cities.json');
 });
 
 function AddTowns(towns) {
-    loadingBlock.style.display = 'none';
-    filterBlock.style.display = 'block';
     let fragment = document.createDocumentFragment();
 
     for (const town of towns) {
@@ -125,10 +133,20 @@ function AddTowns(towns) {
     filterResult.innerHTML = '';
     filterResult.appendChild(fragment);
 }
-
-loadTowns().then(towns => AddTowns(towns))
-    .catch( () => console.error('error'));
-
+function GetTowns(url) {
+    loadTowns(url).then(towns => {
+        townsArray = towns;
+        errorBlock.style.display = 'none';
+        loadingBlock.style.display = 'none';
+        filterBlock.style.display = 'block';
+    })
+        .catch( () => {
+            loadingBlock.style.display = 'none';
+            filterBlock.style.display = 'none';
+            errorBlock.style.display = 'block';
+        });
+}
+GetTowns('https://raw.githubusercontent.com/smelukov/citiesTest/master/cities.jso');
 export {
     loadTowns,
     isMatching
