@@ -60,28 +60,34 @@ listTable.addEventListener('click', (e) => {
     }
     RemoveCokie(e.target);
 });
-function RefreshTable(chunk) {
-    listTable.innerHTML = '';
-    if (document.cookie.length === 0) {
-        return;
+function GetCookie() {
+    const cookie = document.cookie;
+
+    if (cookie) {
+        return cookie.split('; ').reduce((prev, current) => {
+            const [name, value] = current.split('=');
+
+            prev[name] = value;
+
+            return prev;
+        }, {});
     }
-    let cookieObj = document.cookie.split('; ').reduce((prev, current) => {
-        const [name, value] = current.split('=');
 
-        prev[name] = value;
-
-        return prev;
-    }, {});
-    let rows = document.createDocumentFragment();
+    return {};
+}
+function RefreshTable(chunk) {
+    let cookieObj = GetCookie(),
+        rows = document.createDocumentFragment();
 
     for (let cookie in cookieObj) {
-        let tableRow = document.createElement('tr');
-
         if (isMatching(cookie, chunk) || isMatching(cookieObj[cookie], chunk)) {
+            let tableRow = document.createElement('tr');
+
             tableRow.innerHTML = `<td>${cookie}</td><td>${cookieObj[cookie]}</td><td><button data-cookie="${cookie}">удалить</button></td>`;
+            rows.appendChild(tableRow);
         }
-        rows.appendChild(tableRow);
     }
+    listTable.innerHTML = '';
     listTable.appendChild(rows);
 }
 function RemoveCokie(btn) {
