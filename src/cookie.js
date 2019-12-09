@@ -52,8 +52,6 @@ addButton.addEventListener('click', () => {
         return;
     }
     document.cookie = `${addNameInput.value}=${addValueInput.value}`;
-    addNameInput.value = '';
-    addValueInput.value = '';
     RefreshTable(filterNameInput.value);
 });
 listTable.addEventListener('click', (e) => {
@@ -63,6 +61,10 @@ listTable.addEventListener('click', (e) => {
     RemoveCokie(e.target);
 });
 function RefreshTable(chunk) {
+    listTable.innerHTML = '';
+    if (document.cookie.length === 0) {
+        return;
+    }
     let cookieObj = document.cookie.split('; ').reduce((prev, current) => {
         const [name, value] = current.split('=');
 
@@ -80,7 +82,6 @@ function RefreshTable(chunk) {
         }
         rows.appendChild(tableRow);
     }
-    listTable.innerHTML = '';
     listTable.appendChild(rows);
 }
 function RemoveCokie(btn) {
