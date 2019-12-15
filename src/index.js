@@ -24,8 +24,11 @@ ymaps.ready(function () {
     //рендер текущих меток (из localStorage) при загрузке приложения
     marks.forEach(mark => {
         apiMap.createPlacemark(mark.coords, {
-            balloonContentHeader: mark.coords,
-            balloonContent: mark.address
+            balloonContent: `<div class="responseBox">
+                                <div class="name">${mark.name}</div>
+                                <a class="place js-addResponse" href="#">${mark.address}</a>
+                                <div class="response">${mark.response}</div>
+                            </div>`
         },function (e) {
             e.preventDefault();
             let tempArr = [];
@@ -36,7 +39,16 @@ ymaps.ready(function () {
             OpenResponseWindow(e.originalEvent.domEvent._cache.pageX, e.originalEvent.domEvent._cache.pageY, mark.address);
         });
     });
-
+    window.addEventListener('click', function (e) {
+        if(e.target.classList.contains('js-addResponse')){
+            map.balloon.close();
+            let currenrMarks = marks.filter(x => x.address === e.target.innerHTML);
+            coordsInput.value = currenrMarks[0].coords;
+            addressInput.value = currenrMarks[0].address;
+            AddResponses(currenrMarks);
+            OpenResponseWindow(e.pageX, e.pageY, e.target.innerHTML);
+        }
+    });
     // Вешаем обработчик клика на карту
     map.events.add('click', async (e) => {
         var coords = e.get('coords');
@@ -64,11 +76,14 @@ ymaps.ready(function () {
             }
         }
         data.coords = data.coords.split(',');
-console.log(data);
+
         //создаем метку по координате при клике
         apiMap.createPlacemark(data.coords, {
-            balloonContentHeader: data.coords,
-            balloonContent: data.address
+            balloonContent: `<div class="responseBox">
+                                <div class="name">${data.name}</div>
+                                <a class="place js-addResponse" href="#">${data.place}</a>
+                                <div class="response">${data.response}</div>
+                            </div>`
         },function (e) {
             e.preventDefault();
             let tempArr = [];
@@ -77,6 +92,7 @@ console.log(data);
             addressInput.value = data.address;
             AddResponses(tempArr);
             OpenResponseWindow(e.originalEvent.domEvent._cache.pageX, e.originalEvent.domEvent._cache.pageY, mark.address);
+            apiMap.balloon.close();
         });
 
         //Сохроняем данные в localStorage
