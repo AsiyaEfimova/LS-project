@@ -59,6 +59,9 @@ ymaps.ready(function () {
         responseApi.OpenResponseWindow(left, top, address);
     });
 
+    // Вешаем обработчик клика на кластер
+    apiMap.addClusterEventListener('click', x => responseApi.CloseResponseWindow());
+
     // Вешаем обработчик клика на кнопку добавить отзыв
     addResponseButton.addEventListener('click', function (e) {
         e.preventDefault();
@@ -75,8 +78,8 @@ ymaps.ready(function () {
         apiMap.createPlacemark(data.coords, {
             balloonContent: responseApi.RenderTemplate('balloon_response', data)
         },function (e) {
-            responseApi.PlaceMarkHandler(e, data);
             map.balloon.close();
+            responseApi.PlaceMarkHandler(e, data);
         });
 
         //Сохроняем данные в localStorage

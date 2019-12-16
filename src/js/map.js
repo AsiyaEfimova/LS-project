@@ -28,6 +28,10 @@ class Map {
         return map;
     }
 
+    addClusterEventListener(event, handler){
+        this.clusterer.events.add(event, handler);
+    }
+
     createPlacemark(coords, options, handler) {
         const placemark = new ymaps.Placemark(coords, options);
 

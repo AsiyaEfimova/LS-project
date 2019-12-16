@@ -25,6 +25,7 @@ class Response {
     }
     PlaceMarkHandler(e, data) {
         e.preventDefault();
+        e.stopPropagation();
         let tempArr = [],
             [left, top] = e.get('position');
 
