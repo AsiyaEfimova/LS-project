@@ -75,16 +75,22 @@ html, body {
     margin: 0 0 20px 0;
 }
 .responseBox .name {
-    display: inline-block;
-    vertical-align: baseline;
     font: 500 16px/1.4 'Fira Sans', sans-serif;
     margin: 0 0 7px 0;
 }
 .responseBox .place {
-    display: inline-block;
-    vertical-align: baseline;
     opacity: .75;
     margin: 0 0 7px 0;
+}
+.responseBox .response {
+    margin: 10px 0 0 0;
+}
+.responseList .responseBox .response {
+    margin: 0;
+}
+.responseList .responseBox .place, .responseList .responseBox .name {
+    display: inline-block;
+    vertical-align: baseline;
 }
 #addResponse {
     margin: 0 15px;
