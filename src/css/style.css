@@ -73,6 +73,7 @@ html, body {
 }
 .responseBox {
     margin: 0 0 20px 0;
+    font: 400 13px/1.4 'Fira Sans', sans-serif;
 }
 .responseBox .name {
     font: 500 16px/1.4 'Fira Sans', sans-serif;
@@ -84,6 +85,16 @@ html, body {
 }
 .responseBox .response {
     margin: 10px 0 0 0;
+}
+.responseBox .date {
+    position: absolute;
+    right: 0;
+    bottom: 15px;
+    opacity: .6;
+    font: 400 14px/1.2 'Fira Sans', sans-serif;
+}
+.responseList .responseBox {
+    font: 400 16px/1.4 'Fira Sans', sans-serif;
 }
 .responseList .responseBox .response {
     margin: 0;

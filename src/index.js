@@ -73,6 +73,7 @@ ymaps.ready(function () {
             }
         }
         data.coords = data.coords.split(',');
+        data.date = GetDate();
 
         //создаем метку по координате при клике
         apiMap.createPlacemark(data.coords, {
@@ -97,3 +98,27 @@ ymaps.ready(function () {
         e.stopPropagation();
     });
 });
+function GetDate() {
+    const correctNum = function (num) {
+        if (num < 10) {
+            num = '0' + num;
+        }
+        return num;
+    };
+    let date = new Date(),
+        day = date.getDate(),
+        month = date.getMonth() + 1,
+        year = date.getFullYear(),
+        hour = date.getHours(),
+        minutes = date.getMinutes(),
+        seconds = date.getSeconds();
+
+    day = correctNum(day);
+    month = correctNum(month);
+    year = correctNum(year);
+    hour = correctNum(hour);
+    minutes = correctNum(minutes);
+    seconds = correctNum(seconds);
+
+    return `${year}.${month}.${day} ${hour}:${minutes}:${seconds}`;
+}

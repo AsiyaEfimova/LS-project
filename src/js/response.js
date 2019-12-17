@@ -2,7 +2,23 @@ class Response {
     constructor(selectors) {
         [this._responseWindow, this._currentAddressTitle, this._responseList, this._responseForm, this._coordsInput, this._addressInput] = selectors;
     }
+    CorrectPosition(left, top) {
+        var windowWidth = document.documentElement.clientWidth,
+            windowHeight = document.documentElement.clientHeight,
+            modalWidth = this._responseWindow.clientWidth,
+            modalHeight = this._responseWindow.clientHeight;
+
+        if ((modalWidth + left) > windowWidth) {
+            left = windowWidth-modalWidth;
+        }
+        if ((modalHeight + top) > windowHeight) {
+            top = windowHeight-modalHeight;
+        }
+
+        return [left, top];
+    }
     OpenResponseWindow(left, top, address) {
+        [left, top] = this.CorrectPosition(left, top);
         this._responseWindow.style.left = left+'px';
         this._responseWindow.style.top = top+'px';
         this._currentAddressTitle.innerHTML = address;
@@ -12,7 +28,7 @@ class Response {
         this._responseForm.reset();
     }
     RenderTemplate(templateName, data) {
-        return require(`./../${templateName}.hbs`)({ reviews: data });
+        return require(`./../views/${templateName}.hbs`)({ reviews: data });
     }
     AddResponses(marks) {
         if (marks.length>0) {
