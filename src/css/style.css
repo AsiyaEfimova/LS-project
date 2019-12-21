@@ -1,0 +1,193 @@
+* {margin: 0; padding: 0; outline: none; box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;}
+*:before, *:after {box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;}
+html {height: 100%;}
+body {height: 100%; min-height: 100%; font: normal 14px/1.4 'Ubuntu', sans-serif; color: #fff; background: #09101a;}
+
+aside, nav, footer, header, section, article, menu {display: block;}
+
+a {color: inherit; cursor:pointer;}
+a img {border:none;}
+img {vertical-align: middle; max-width: 100%; height: auto;}
+
+p {margin:0 0 15px 0;}
+
+em, i {font: normal 1em/1.4 'Ubuntu', sans-serif;}
+strong, b {font: normal 1em/1.4 'Ubuntu', sans-serif;}
+
+ol {margin: 0 0 15px 35px;}
+ol li {margin: 0 0 10px 0;}
+ul {margin: 0 0 15px 35px;}
+ul li {margin: 0 0 10px 0;}
+
+nav ul, nav ul li {list-style: none; margin: 0;}
+
+/* Grid */
+#pageWrap {
+    min-height: 100%;
+    min-width: 640px;
+    position: relative;
+    background: #09101a;
+}
+#headerWrap {
+    height: 22px;
+    width: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 1;
+    background: #242f3d;
+}
+.logOut {
+    width: 12px;
+    height: 12px;
+    position: absolute;
+    right: 10px;
+    top: 5px;
+    cursor: pointer;
+}
+.logOut:before, .logOut:after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 2px;
+    position: absolute;
+    left: 0;
+    top: 5px;
+    background: #6c7883;
+}
+.logOut:before {
+    transform: rotate(45deg);
+}
+.logOut:after {
+    transform: rotate(-45deg);
+}
+#chat {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    padding: 22px 0 0 0;
+}
+.contacts {
+    width: 260px;
+    height: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    padding: 22px 0 0 0;
+    background: #17212b;
+    border-right: 1px solid #09101a;
+}
+.settings {
+    padding: 10px 20px 20px 15px;
+    display: flex;
+    align-items: center;
+}
+.searchInp {
+    flex-grow: 1;
+}
+.searchInp input {
+    display: block;
+    width: 100%;
+    border-radius: 2px;
+    padding: 0 10px;
+    font: 300 14px/30px 'Ubuntu', sans-serif;
+    color: #6d7883;
+    background: #242f3d;
+    border: none;
+}
+.burger {
+    width: 18px;
+    height: 2px;
+    background: #6c7883;
+    position: relative;
+    cursor: pointer;
+    margin: 0 10px 0 0;
+}
+.burger:before, .burger:after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 2px;
+    position: absolute;
+    left: 0;
+    background: #6c7883;
+}
+.burger:before {
+    top: -5px;
+}
+.burger:after {
+    top: 5px;
+}
+.dialog {
+    margin: 0 0 0 261px;
+    height: 100%;
+}
+.contactList {
+    margin: 0 15px;
+}
+.contactList .contactBox {
+    overflow: hidden;
+    margin: 0 0 15px 0;
+}
+.contactList .contactBox .personImg {
+    width: 46px;
+    float: left;
+    border-radius: 50%;
+    overflow: hidden;
+}
+.contactList .contactBox .personImg img {
+    width: 100%;
+    height: auto;
+}
+.contactList .contactBox .contactInfo {
+    padding: 4px 0 4px 56px;
+}
+.contactList .contactBox .name {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.contactList .contactBox .messText {
+    color: #7f91a4;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/*
+
+<div class="dialogHead">
+    Чат
+    2 участника
+</div>
+<div class="chatWrap">
+    <div class="chatList">
+        <div class="messageBox">
+            <div class="personImg"><img src="src/img/profile.png" height="48" width="48" alt=""></div>
+            <div class="messInfo">
+                <div class="name">Григорий Портмонесян</div>
+                <span class="time">12:10</span>
+            </div>
+            <ul class="messageSet">
+                <li class="message">
+                    <div class="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+                </li>
+                <li class="message">
+                    <div class="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="newMessageBlock">
+    <form class="newMessageForm">
+        <input type="text" value="сообщение">
+        <button class="iconBtn">Отправить</button>
+    </form>
+*/
+
+
+
+
+
+

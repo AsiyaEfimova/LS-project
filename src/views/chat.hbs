@@ -1,0 +1,67 @@
+<div id="chat" data-user="{{name}}">
+    <header id="headerWrap">
+        <div class="logOut"></div>
+    </header>
+    <div class="contacts">
+        <div class="settings">
+            <div class="burger"></div>
+            <form class="searchInp" action="" method="post">
+                <input type="text" name="search" placeholder="Найти...">
+            </form>
+        </div>
+        <div class="contactList">
+            <div class="contactBox">
+                <div class="personImg"><img src="src/img/profile.png" height="48" width="48" alt=""></div>
+                <div class="contactInfo">
+                    <div class="name">{{name}}</div>
+                    <div class="messText">Lorem ipsum dolor sit amet, co</div>
+                </div>
+            </div>
+            <!--<div class="contactBox">-->
+                <!--<div class="personImg"><img src="src/img/profile.png" height="48" width="48" alt=""></div>-->
+                <!--<div class="contactInfo">-->
+                    <!--<div class="name">Григорий Портмонесян</div>-->
+                    <!--<div class="messText">Lorem ipsum dolor sit amet, co</div>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="contactBox">-->
+                <!--<div class="personImg"><img src="src/img/profile.png" height="48" width="48" alt=""></div>-->
+                <!--<div class="contactInfo">-->
+                    <!--<div class="name">Григорий Портмонесян</div>-->
+                    <!--<div class="messText">Lorem ipsum dolor sit amet, co</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        </div>
+    </div>
+    <div class="dialog">
+        <div class="dialogHead">
+            Чат
+            2 участника
+        </div>
+        <div class="chatWrap">
+            <div class="chatList">
+                <div class="messageBox">
+                    <div class="personImg"><img src="src/img/profile.png" height="48" width="48" alt=""></div>
+                    <div class="messInfo">
+                        <div class="name">Григорий Портмонесян</div>
+                        <span class="time">12:10</span>
+                    </div>
+                    <ul class="messageSet">
+                        <li class="message">
+                            <div class="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+                        </li>
+                        <li class="message">
+                            <div class="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="newMessageBlock">
+            <form class="newMessageForm">
+                <input type="text" value="сообщение">
+                <button class="iconBtn">Отправить</button>
+            </form>
+        </div>
+    </div>
+</div>
