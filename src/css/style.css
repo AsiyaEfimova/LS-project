@@ -1,7 +1,7 @@
 * {margin: 0; padding: 0; outline: none; box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;}
 *:before, *:after {box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;}
 html {height: 100%;}
-body {height: 100%; min-height: 100%; font: normal 14px/1.4 'Ubuntu', sans-serif; color: #fff; background: #09101a;}
+body {height: 100%; min-height: 100%; font: 400 14px/1.4 'Ubuntu', sans-serif; color: #fff; background: #09101a;}
 
 aside, nav, footer, header, section, article, menu {display: block;}
 
@@ -11,8 +11,8 @@ img {vertical-align: middle; max-width: 100%; height: auto;}
 
 p {margin:0 0 15px 0;}
 
-em, i {font: normal 1em/1.4 'Ubuntu', sans-serif;}
-strong, b {font: normal 1em/1.4 'Ubuntu', sans-serif;}
+em, i {font: italic 400 1em/1.4 'Ubuntu', sans-serif;}
+strong, b {font: 600 1em/1.4 'Ubuntu', sans-serif;}
 
 ol {margin: 0 0 15px 35px;}
 ol li {margin: 0 0 10px 0;}
@@ -23,10 +23,103 @@ nav ul, nav ul li {list-style: none; margin: 0;}
 
 /* Grid */
 #pageWrap {
-    min-height: 100%;
+    height: 100%;
     min-width: 640px;
     position: relative;
     background: #09101a;
+}
+#auth {
+    min-height: 600px;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+.formBox {
+    width: 520px;
+    background: #17212b;
+    position: relative;
+    padding: 40px;
+    text-align: center;
+}
+.formBox .cancel {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    cursor: pointer;
+}
+.formBox .cancel:before, .formBox .cancel:after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 2px;
+    position: absolute;
+    left: 0;
+    top: 10px;
+    background: #fff;
+}
+.formBox .cancel:before {
+    transform: rotate(45deg);
+}
+.formBox .cancel:after {
+    transform: rotate(-45deg);
+}
+.authForm {
+    max-width: 300px;
+    margin: 0 auto;
+}
+.authForm .pic {
+    width: 140px;
+    height: 140px;
+    line-height: 140px;
+    margin: 0 auto 30px auto;
+    text-align: center;
+    background: #242f3d;
+    border-radius: 50%;
+}
+.authForm .pic img {
+    vertical-align: middle;
+}
+h2 {
+    font: 500 24px/1.2 'Ubuntu', sans-serif;
+    margin: 0 0 10px 0;
+}
+.authForm p {
+    margin: 0 0 30px 0;
+    color: #7f91a4;
+}
+.authForm input {
+    display: block;
+    width: 100%;
+    font: 300 16px/40px 'Ubuntu', sans-serif;
+    padding: 0 10px;
+    color: #fff;
+    border: none;
+    background: none;
+    border-bottom: 1px solid #465362;
+    margin: 0 0 20px 0;
+}
+.authForm input:focus {
+    border-bottom: 1px solid #5288c1;
+}
+::-webkit-input-placeholder {color: #858e97;}
+::-moz-placeholder {color: #858e97;}
+:-moz-placeholder {color: #858e97;}
+:-ms-input-placeholder {color: #858e97;}
+.authForm button {
+    display: inline-block;
+    background: #5288c1;
+    color: #fff;
+    font: 500 15px/43px 'Ubuntu', sans-serif;
+    text-transform: uppercase;
+    padding: 0 40px;
+    border-radius: 3px;
+    border: none;
+    cursor: pointer;
 }
 #headerWrap {
     height: 22px;
@@ -153,38 +246,6 @@ nav ul, nav ul li {list-style: none; margin: 0;}
     overflow: hidden;
     text-overflow: ellipsis;
 }
-
-/*
-
-<div class="dialogHead">
-    Чат
-    2 участника
-</div>
-<div class="chatWrap">
-    <div class="chatList">
-        <div class="messageBox">
-            <div class="personImg"><img src="src/img/profile.png" height="48" width="48" alt=""></div>
-            <div class="messInfo">
-                <div class="name">Григорий Портмонесян</div>
-                <span class="time">12:10</span>
-            </div>
-            <ul class="messageSet">
-                <li class="message">
-                    <div class="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
-                </li>
-                <li class="message">
-                    <div class="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
-                </li>
-            </ul>
-        </div>
-    </div>
-</div>
-<div class="newMessageBlock">
-    <form class="newMessageForm">
-        <input type="text" value="сообщение">
-        <button class="iconBtn">Отправить</button>
-    </form>
-*/
 
 
 
