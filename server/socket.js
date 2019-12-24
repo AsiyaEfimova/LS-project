@@ -8,12 +8,6 @@ console.log('сервер запущен');
 
 const handlers = {
     'newUser': (data, ws) => {
-        // wss.clients.forEach((client) => {
-        //     if (client.user) {
-        //         allUsers.push(client.user);
-        //     }
-        // });
-
         ws.send(JSON.stringify({
             payload: 'getUsers',
             data: allUsers
@@ -52,6 +46,18 @@ const handlers = {
         broadcast({
             payload: 'addPhoto',
             data: data.user
+        });
+    },
+    'sendMessage': (data, ws) => {
+        console.log('пришло сообщение');
+        allUsers.forEach((user) => {
+            if (user.id === data.user.id) {
+                data.user.img = user.img;
+            }
+        });
+        broadcast({
+            payload: 'sendMessage',
+            data: data
         });
     }
 };

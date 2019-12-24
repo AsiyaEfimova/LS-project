@@ -160,6 +160,11 @@ h2 {
     position: relative;
     padding: 22px 0 0 0;
 }
+#fileInp {
+    position: absolute;
+    visibility: hidden;
+    opacity: 0;
+}
 .contacts {
     width: 260px;
     height: 100%;
@@ -214,6 +219,7 @@ h2 {
 .dialog {
     margin: 0 0 0 261px;
     height: 100%;
+    position: relative;
 }
 .contactList {
     margin: 0 15px;
@@ -246,9 +252,122 @@ h2 {
     overflow: hidden;
     text-overflow: ellipsis;
 }
-
-
-
-
-
-
+.dialogHead {
+    background: #17212b;
+    padding: 15px 10px;
+}
+.dialogHead .title {margin: 0 0 5px 0;}
+.dialogHead .counter {color: #7f91a4;}
+.chatWrap {
+    padding: 20px 10px;
+}
+.messageBox {
+    max-width: 80%;
+    margin: 0 0 5px 0;
+    position: relative;
+    padding: 0 0 0 45px;
+    clear: both;
+}
+.messageBox .personImg {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    overflow: hidden;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+.messageBox .personImg img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+.messageBox .messageSet {
+    margin: 0;
+    list-style: none;
+}
+.messageBox .message {
+    margin: 0 0 5px 0;
+}
+.messageBox .message .text {
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+    background: #182533;
+    border-radius: 3px;
+    padding: 10px 50px 10px 10px;
+}
+.messageBox .message:first-child .text:before {
+    content: '';
+    display: block;
+    width: 0;
+    height: 0;
+    border-bottom: 8px solid #182533;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-top: none;
+    position: absolute;
+    left: -4px;
+    bottom: 0;
+}
+.messageBox .message .time {
+    position: absolute;
+    right: 10px;
+    bottom: 5px;
+    color: #7a8b9e;
+    font: 300 14px/1.2 'Ubuntu', sans-serif;
+}
+.messageBox.myMessage {
+    padding: 0 45px 0 0;
+    float: right;
+}
+.messageBox.myMessage .personImg {
+    left: auto;
+    right: 0;
+}
+.messageBox.myMessage .messageSet {
+    text-align: right;
+}
+.messageBox.myMessage .message:first-child .text:before {
+    border-bottom: 8px solid #2b5278;
+    left: auto;
+    right: -4px;
+}
+.messageBox.myMessage .message .text {
+    background: #2b5278;
+}
+.messageBox.myMessage .message .time {
+    color: #7da8d3;
+}
+.newMessageBlock {
+    background: #17212b;
+    padding: 15px 10px;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+}
+.newMessageForm {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.newMessageForm input {
+    flex-grow: 1;
+    padding: 5px;
+    font: 300 14px/1.2 'Ubuntu', sans-serif;
+    border: none;
+    background: none;
+    margin: 0 10px 0 0;
+    color: #fff;
+}
+.newMessageForm button {
+    display: inline-block;
+    background: #5288c1;
+    color: #fff;
+    font: 400 14px/28px 'Ubuntu', sans-serif;
+    padding: 0 20px;
+    border-radius: 3px;
+    border: none;
+    cursor: pointer;
+}

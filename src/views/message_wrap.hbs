@@ -1,0 +1,10 @@
+<div class="messageBox {{user.class}}" data-user="{{user.id}}">
+    <div class="personImg">
+        {{#if img}}
+            <img class="img" src="{{user.img}}" height="48" width="48" alt="">
+        {{^}}
+            <img class="img" src="src/img/profile.png" height="48" width="48" alt="">
+        {{~/if~}}
+    </div>
+    <ul class="messageSet"></ul>
+</div>

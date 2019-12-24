@@ -9,7 +9,9 @@ var router = {
         signIn.addEventListener('click', () => {
             var login = target.querySelector('#nik').value || target.querySelector('#name').value;
 
-            root.innerHTML = render('chat', { name: login });
+            if (login !== '') {
+                root.innerHTML = render('chat', { name: login });
+            }
         });
         cancel.addEventListener('click', () => {
             authForm.reset();
@@ -17,26 +19,6 @@ var router = {
     },
     'chat': (target) => {
         initSockets(target);
-        // const fileInp = target.querySelector('#fileInp'),
-        //     fileReader = new FileReader();
-        // let currentImg;
-        //
-        // fileInp.addEventListener('change', e => {
-        //     let file = e.target.files[0];
-        //
-        //     fileReader.readAsDataURL(file);
-        //
-        //     console.log(1);
-        // });
-        // target.addEventListener('click', e => {
-        //     if (e.target.classList.contains('img')) {
-        //         fileInp.click();
-        //         currentImg = e.target;
-        //     }
-        // });
-        // fileReader.addEventListener('load', function () {
-        //     currentImg.src = fileReader.result;
-        // });
     }
 };
 // Конфигурация observer (за какими изменениями наблюдать)
@@ -74,7 +56,11 @@ window.addEventListener('DOMContentLoaded', () => {
 
 function initSockets(target) {
     var list = target.querySelector('.contactList'),
-        currentUserId = target.dataset.id;
+        chatList = target.querySelector('.chatList'),
+        currentUserId = target.dataset.id,
+        messageForm = target.querySelector('.newMessageForm'),
+        messageInput = target.querySelector('.messageInput'),
+        sendMessage = target.querySelector('.sendMessage');
     const ws = new WebSocket('ws://localhost:3000');
 
     // Массив обработчиков событий пришедших с сервера
@@ -106,6 +92,36 @@ function initSockets(target) {
                 currentImg = currentUser.querySelector('.img');
 
             currentImg.src = data.img;
+            let messages = chatList.querySelectorAll('[data-user="'+data.id+'"]');
+
+            messages.forEach(message => {
+                let img = message.querySelector('img');
+
+                img.src = data.img;
+            });
+        },
+        'sendMessage': (data) => {
+            console.log('sendMessage', data);
+            let lastMessage = chatList.lastElementChild,
+                lastUserId;
+
+            if (lastMessage) {
+                lastUserId = lastMessage.getAttribute('data-user');
+            }
+            if (currentUserId === data.user.id) {
+                data.user.class = 'myMessage';
+            }
+            if (data.user.id !== lastUserId) {
+                let messageBlock = new DOMParser().parseFromString(render('message_wrap', data), 'text/html').body.firstChild;
+
+                chatList.appendChild(messageBlock);
+                lastMessage = chatList.lastElementChild;
+            }
+
+            let lastMessageSet = lastMessage.querySelector('.messageSet'),
+                message = new DOMParser().parseFromString(render('message_text', data), 'text/html').body.firstChild;
+
+            lastMessageSet.appendChild(message);
         }
     };
 
@@ -172,9 +188,46 @@ function initSockets(target) {
             }
         }));
     });
+    messageForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        let messageText = messageInput.value;
+
+        if (messageText && messageText !== '') {
+            ws.send(JSON.stringify({
+                payload: 'sendMessage',
+                data: {
+                    user: {
+                        id: currentUserId
+                    },
+                    message: {
+                        text: messageText,
+                        time: GetTime()
+                    }
+                }
+            }));
+            messageInput.value = '';
+        }
+    });
 }
 
 function render(templateName, data = '') {
     console.log(data);
     return require(`./views/${templateName}.hbs`)(data);
+}
+
+function GetTime() {
+    const correctNum = function (num) {
+        if (num < 10) {
+            num = '0' + num;
+        }
+        return num;
+    };
+    let date = new Date(),
+        hour = date.getHours(),
+        minutes = date.getMinutes();
+
+    hour = correctNum(hour);
+    minutes = correctNum(minutes);
+
+    return `${hour}:${minutes}`;
 }
