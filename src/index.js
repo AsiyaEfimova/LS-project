@@ -27,7 +27,6 @@ const config = {
     childList: true,
     subtree: true
 };
-
 // Функция обратного вызова при срабатывании мутации
 const callback = function (mutationsList, observer) {
     var node = mutationsList[0].addedNodes[0];
@@ -86,6 +85,7 @@ function initSockets(target) {
             let currentUser = target.querySelector('[data-user="'+data+'"]');
 
             currentUser.parentElement.removeChild(currentUser);
+            userCounter.innerHTML = GetCount(list);
         },
         'addPhoto': (data) => {
             console.log('addPhoto', data);

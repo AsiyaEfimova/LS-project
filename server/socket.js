@@ -76,11 +76,10 @@ wss.on('connection', function connection(ws) {
     ws.on('close', (e) => {
         console.log('пользователь вышел', ws.user);
     });
-
     ws.on('message', (data) => {
         var dataParse = JSON.parse(data);
         console.log('пришло сообщение', dataParse);
 
         handlers[dataParse.payload](dataParse.data, ws);
-    })
+    });
 });
