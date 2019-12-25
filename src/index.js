@@ -60,7 +60,7 @@ function initSockets(target) {
         currentUserId = target.dataset.id,
         messageForm = target.querySelector('.newMessageForm'),
         messageInput = target.querySelector('.messageInput'),
-        sendMessage = target.querySelector('.sendMessage');
+        userCounter = target.querySelector('.counter');
     const ws = new WebSocket('ws://localhost:3000');
 
     // Массив обработчиков событий пришедших с сервера
@@ -73,6 +73,7 @@ function initSockets(target) {
                 data.class = 'myImg';
             }
             list.innerHTML += render('user', data);
+            userCounter.innerHTML = GetCount(list);
         },
         'getUsers': (data) => {
             console.log('getUsers', data);
@@ -122,6 +123,10 @@ function initSockets(target) {
                 message = new DOMParser().parseFromString(render('message_text', data), 'text/html').body.firstChild;
 
             lastMessageSet.appendChild(message);
+
+            let currentUser = list.querySelector('[data-user="'+data.user.id+'"]');
+
+            currentUser.querySelector('.messText').innerHTML = data.message.text;
         }
     };
 
@@ -211,15 +216,26 @@ function initSockets(target) {
 }
 
 function render(templateName, data = '') {
-    console.log(data);
     return require(`./views/${templateName}.hbs`)(data);
 }
+function GetCount(list) {
+    const declOfNum = function(number, titles) {
+        let cases = [2, 0, 1, 1, 1, 2];
 
+        return titles[ (number%100>4 && number%100<20)? 2 : cases[(number%10<5)?number%10:5] ];
+    };
+    let count = list.querySelectorAll('.contactBox').length;
+
+    count += ' ' + declOfNum(count, ['участник', 'участника', 'участников']);
+
+    return count;
+}
 function GetTime() {
     const correctNum = function (num) {
         if (num < 10) {
             num = '0' + num;
         }
+
         return num;
     };
     let date = new Date(),
