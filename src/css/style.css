@@ -1,0 +1,373 @@
+* {margin: 0; padding: 0; outline: none; box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;}
+*:before, *:after {box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;}
+html {height: 100%;}
+body {height: 100%; min-height: 100%; font: 400 14px/1.4 'Ubuntu', sans-serif; color: #fff; background: #09101a;}
+
+aside, nav, footer, header, section, article, menu {display: block;}
+
+a {color: inherit; cursor:pointer;}
+a img {border:none;}
+img {vertical-align: middle; max-width: 100%; height: auto;}
+
+p {margin:0 0 15px 0;}
+
+em, i {font: italic 400 1em/1.4 'Ubuntu', sans-serif;}
+strong, b {font: 600 1em/1.4 'Ubuntu', sans-serif;}
+
+ol {margin: 0 0 15px 35px;}
+ol li {margin: 0 0 10px 0;}
+ul {margin: 0 0 15px 35px;}
+ul li {margin: 0 0 10px 0;}
+
+nav ul, nav ul li {list-style: none; margin: 0;}
+
+/* Grid */
+#pageWrap {
+    height: 100%;
+    min-width: 640px;
+    position: relative;
+    background: #09101a;
+}
+#auth {
+    min-height: 600px;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+.formBox {
+    width: 520px;
+    background: #17212b;
+    position: relative;
+    padding: 40px;
+    text-align: center;
+}
+.formBox .cancel {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    cursor: pointer;
+}
+.formBox .cancel:before, .formBox .cancel:after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 2px;
+    position: absolute;
+    left: 0;
+    top: 10px;
+    background: #fff;
+}
+.formBox .cancel:before {
+    transform: rotate(45deg);
+}
+.formBox .cancel:after {
+    transform: rotate(-45deg);
+}
+.authForm {
+    max-width: 300px;
+    margin: 0 auto;
+}
+.authForm .pic {
+    width: 140px;
+    height: 140px;
+    line-height: 140px;
+    margin: 0 auto 30px auto;
+    text-align: center;
+    background: #242f3d;
+    border-radius: 50%;
+}
+.authForm .pic img {
+    vertical-align: middle;
+}
+h2 {
+    font: 500 24px/1.2 'Ubuntu', sans-serif;
+    margin: 0 0 10px 0;
+}
+.authForm p {
+    margin: 0 0 30px 0;
+    color: #7f91a4;
+}
+.authForm input {
+    display: block;
+    width: 100%;
+    font: 300 16px/40px 'Ubuntu', sans-serif;
+    padding: 0 10px;
+    color: #fff;
+    border: none;
+    background: none;
+    border-bottom: 1px solid #465362;
+    margin: 0 0 20px 0;
+}
+.authForm input:focus {
+    border-bottom: 1px solid #5288c1;
+}
+::-webkit-input-placeholder {color: #858e97;}
+::-moz-placeholder {color: #858e97;}
+:-moz-placeholder {color: #858e97;}
+:-ms-input-placeholder {color: #858e97;}
+.authForm button {
+    display: inline-block;
+    background: #5288c1;
+    color: #fff;
+    font: 500 15px/43px 'Ubuntu', sans-serif;
+    text-transform: uppercase;
+    padding: 0 40px;
+    border-radius: 3px;
+    border: none;
+    cursor: pointer;
+}
+#headerWrap {
+    height: 22px;
+    width: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 1;
+    background: #242f3d;
+}
+.logOut {
+    width: 12px;
+    height: 12px;
+    position: absolute;
+    right: 10px;
+    top: 5px;
+    cursor: pointer;
+}
+.logOut:before, .logOut:after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 2px;
+    position: absolute;
+    left: 0;
+    top: 5px;
+    background: #6c7883;
+}
+.logOut:before {
+    transform: rotate(45deg);
+}
+.logOut:after {
+    transform: rotate(-45deg);
+}
+#chat {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    padding: 22px 0 0 0;
+}
+#fileInp {
+    position: absolute;
+    visibility: hidden;
+    opacity: 0;
+}
+.contacts {
+    width: 260px;
+    height: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    padding: 22px 0 0 0;
+    background: #17212b;
+    border-right: 1px solid #09101a;
+}
+.settings {
+    padding: 10px 20px 20px 15px;
+    display: flex;
+    align-items: center;
+}
+.searchInp {
+    flex-grow: 1;
+}
+.searchInp input {
+    display: block;
+    width: 100%;
+    border-radius: 2px;
+    padding: 0 10px;
+    font: 300 14px/30px 'Ubuntu', sans-serif;
+    color: #6d7883;
+    background: #242f3d;
+    border: none;
+}
+.burger {
+    width: 18px;
+    height: 2px;
+    background: #6c7883;
+    position: relative;
+    cursor: pointer;
+    margin: 0 10px 0 0;
+}
+.burger:before, .burger:after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 2px;
+    position: absolute;
+    left: 0;
+    background: #6c7883;
+}
+.burger:before {
+    top: -5px;
+}
+.burger:after {
+    top: 5px;
+}
+.dialog {
+    margin: 0 0 0 261px;
+    height: 100%;
+    position: relative;
+}
+.contactList {
+    margin: 0 15px;
+}
+.contactList .contactBox {
+    overflow: hidden;
+    margin: 0 0 15px 0;
+}
+.contactList .contactBox .personImg {
+    width: 46px;
+    float: left;
+    border-radius: 50%;
+    overflow: hidden;
+}
+.contactList .contactBox .personImg img {
+    width: 100%;
+    height: auto;
+}
+.contactList .contactBox .contactInfo {
+    padding: 4px 0 4px 56px;
+}
+.contactList .contactBox .name {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.contactList .contactBox .messText {
+    color: #7f91a4;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.dialogHead {
+    background: #17212b;
+    padding: 15px 10px;
+}
+.dialogHead .title {margin: 0 0 5px 0;}
+.dialogHead .counter {color: #7f91a4;}
+.chatWrap {
+    padding: 20px 10px;
+}
+.messageBox {
+    max-width: 80%;
+    margin: 0 0 5px 0;
+    position: relative;
+    padding: 0 0 0 45px;
+    clear: both;
+}
+.messageBox .personImg {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    overflow: hidden;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+.messageBox .personImg img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+.messageBox .messageSet {
+    margin: 0;
+    list-style: none;
+}
+.messageBox .message {
+    margin: 0 0 5px 0;
+}
+.messageBox .message .text {
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+    background: #182533;
+    border-radius: 3px;
+    padding: 10px 50px 10px 10px;
+}
+.messageBox .message:first-child .text:before {
+    content: '';
+    display: block;
+    width: 0;
+    height: 0;
+    border-bottom: 8px solid #182533;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-top: none;
+    position: absolute;
+    left: -4px;
+    bottom: 0;
+}
+.messageBox .message .time {
+    position: absolute;
+    right: 10px;
+    bottom: 5px;
+    color: #7a8b9e;
+    font: 300 14px/1.2 'Ubuntu', sans-serif;
+}
+.messageBox.myMessage {
+    padding: 0 45px 0 0;
+    float: right;
+}
+.messageBox.myMessage .personImg {
+    left: auto;
+    right: 0;
+}
+.messageBox.myMessage .messageSet {
+    text-align: right;
+}
+.messageBox.myMessage .message:first-child .text:before {
+    border-bottom: 8px solid #2b5278;
+    left: auto;
+    right: -4px;
+}
+.messageBox.myMessage .message .text {
+    background: #2b5278;
+}
+.messageBox.myMessage .message .time {
+    color: #7da8d3;
+}
+.newMessageBlock {
+    background: #17212b;
+    padding: 15px 10px;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+}
+.newMessageForm {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.newMessageForm input {
+    flex-grow: 1;
+    padding: 5px;
+    font: 300 14px/1.2 'Ubuntu', sans-serif;
+    border: none;
+    background: none;
+    margin: 0 10px 0 0;
+    color: #fff;
+}
+.newMessageForm button {
+    display: inline-block;
+    background: #5288c1;
+    color: #fff;
+    font: 400 14px/28px 'Ubuntu', sans-serif;
+    padding: 0 20px;
+    border-radius: 3px;
+    border: none;
+    cursor: pointer;
+}
